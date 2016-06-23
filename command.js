@@ -5,11 +5,11 @@ var helpers = require('./helpers');
 var Casper  = require('casper');
 var casper  = helpers.buildCasper(Casper);
 
-var EMAIL_CITRIX_USERNAME = system.env.EMAIL_CITRIX_USERNAME;
-var EMAIL_CITRIX_PASSWORD = system.env.EMAIL_CITRIX_PASSWORD;
+var CITRIX_USERNAME = system.env.CITRIX_USERNAME;
+var CITRIX_PASSWORD = system.env.CITRIX_PASSWORD;
 
-if(!EMAIL_CITRIX_USERNAME || !EMAIL_CITRIX_PASSWORD)  {
-  console.log('Missing required env: EMAIL_CITRIX_USERNAME or EMAIL_CITRIX_PASSWORD')
+if(!CITRIX_USERNAME || !CITRIX_PASSWORD)  {
+  console.log('Missing required env: CITRIX_USERNAME or CITRIX_PASSWORD')
   this.exit(1)
 }
 
@@ -17,14 +17,20 @@ helpers.thenWithErrors(casper, function(){
   return casper.click('.auth__button--citrix');
 })
 
-casper.waitForText("Support")
+casper.waitForSelector("#credentials")
 
 helpers.thenWithErrors(casper, function(){
-  casper.fillLabels('#credentials', {
-    'emailAddress': EMAIL_CITRIX_USERNAME,
-    'password': EMAIL_CITRIX_PASSWORD
+  casper.fill('#credentials', {
+    'emailAddress': CITRIX_USERNAME,
+    'password': CITRIX_PASSWORD
   })
   casper.click("#submit")
+})
+
+casper.waitForSelector('input[name="authorize"]')
+
+helpers.thenWithErrors(casper, function(){
+  casper.click('input[name="authorize"]')
 })
 
 helpers.assertOnOctobluDashboard(casper);
