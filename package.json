@@ -1,0 +1,37 @@
+{
+  "name": "sentinel-email-citrix",
+  "version": "1.0.0",
+  "description": "Sentinel is always watching",
+  "keywords": [
+    "sentinel",
+    "octoblu"
+  ],
+  "homepage": "https://github.com/octoblu/sentinel-email-citrix",
+  "bugs": "https://github.com/octoblu/sentinel-email-citrix/issues",
+  "author": {
+    "name": "Octoblu",
+    "url": "https://github.com/octoblu"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/octoblu/sentinel-email-citrix.git"
+  },
+  "scripts": {
+    "start": "casperjs command.js",
+    "test": "echo 'No Tests' && exit 0"
+  },
+  "dependencies": {
+    "casperjs": "^1.1.1"
+  },
+  "devDependencies": {
+  },
+  "peerDependencies": {
+  },
+  "engines": {
+    "phantomjs": ">=2.1.1",
+    "node": ">=5.0.0",
+    "npm": ">=3.0.0"
+  },
+  "license": "MIT"
+}
